@@ -16,22 +16,21 @@ def main():
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
 
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updateable, drawable)
+
     while True:
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            
-        
         # Update player
         player.update(dt)
-
         screen.fill((0, 0, 0))
         player.draw(screen)
-
         # Limit's frame rate to 60fps
         dt = clock.tick(60) / 1000
-
         pygame.display.flip()
 
 if __name__ == "__main__":
